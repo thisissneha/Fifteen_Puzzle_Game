@@ -36,7 +36,7 @@ app.get("/stats", async (req, res) => {
     try {
         const details = await PuzzleGame.find({}).sort({
             _id: -1
-        }).limit(11);
+        });
 
         res.status(200).send({
             status: 'success',

@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "serve": "cd frontend & npm run serve"
+    "serve": "cd frontend & npm run serve",
+    "build": "cd frontend & npm run build"
   },
   "author": "Sneha Goel",
   "license": "ISC",
