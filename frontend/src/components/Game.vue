@@ -16,6 +16,10 @@
             (i + 1) * itemsPerRow
           )"
           v-bind:key="elem"
+          :class="{
+            'correct-position':
+              allRandomElements.indexOf(elem) == numberArray.indexOf(elem),
+          }"
           @click="swapValues(elem)"
         >
           {{ numberID[elem] }}
@@ -36,8 +40,14 @@ export default {
     GameDetails,
     ResumeGame,
   },
+
   computed: {
-    ...mapGetters(["allRandomElements", "itemsPerRow", "numberID"]),
+    ...mapGetters([
+      "allRandomElements",
+      "itemsPerRow",
+      "numberID",
+      "numberArray",
+    ]),
 
     randomElemGroup() {
       return Array.from(
@@ -56,7 +66,7 @@ export default {
     },
 
     checkLocalStorage: function () {
-      this.$store.commit("checkLocalStorage");
+      this.$store.dispatch("checkLocalStorage");
     },
 
     arrangeNumbersRandomly: function () {
@@ -66,15 +76,22 @@ export default {
 
   beforeMount() {
     this.checkLocalStorage();
+  },
+  mounted() {
     this.arrangeNumbersRandomly();
   },
 };
 </script>
 
 <style>
+.pos-row-cell.correct-position {
+  background-color: darkcyan;
+}
 .game {
-  width: 80%;
-  margin: 2% 10%;
+  /* width: 80%; */
+  height: 276px;
+  width: 308px;
+  margin: 2% auto;
 }
 
 .game-row {
@@ -94,5 +111,6 @@ export default {
   height: 64px;
   border-radius: 6px;
   margin: 0px 4px;
+  cursor: pointer;
 }
 </style>

@@ -15,6 +15,7 @@
     Pause Game
   </button>
   <button class="btn" @click="pause()" v-else>Resume Game</button>
+  <button class="btn" @click="resetGame()">Reset Game</button>
   <div
     class="overlay"
     @click="pause()"
@@ -29,7 +30,6 @@
   >
     Play
   </div>
-  <button class="btn" @click="resetGame()">Reset Game</button>
 
   <img
     class="userWin"
@@ -69,11 +69,11 @@ export default {
     },
 
     playGame: function () {
-      this.$store.commit("playGame");
+      this.$store.dispatch("playGame");
     },
 
     resetUserWinFlag: function () {
-      this.$store.commit("resetUserWinFlag");
+      this.$store.dispatch("resetUserWinFlag");
     },
   },
 
@@ -122,18 +122,20 @@ export default {
   text-align: center;
   line-height: 256px;
   cursor: pointer;
-
   background-color: black;
-  height: 276px;
+  height: 292px;
   width: 314px;
-  margin: 0.1em 2.28em;
-  padding: 6px 0px;
+  margin: 2px auto;
+  left: 0px;
+  right: 50%;
+  /* padding: 6px 0px; */
   border-radius: 10px;
   position: absolute;
   opacity: 0.7;
 }
 
 .userWin {
+  cursor: pointer;
   top: 48%;
   left: 24%;
   margin-right: -50%;

@@ -2,12 +2,9 @@
   <div class="stats">
     <div class="leaderboard centered" id="player-stats">
       <header class="leaderboard-header">
-        <div class="title">
-          <button class="stats-back-btn" id="stats-back-btn">
-            <i class="fa fa-hand-o-left"></i>
-          </button>
-          <h3>Players Stats</h3>
-        </div>
+        <h3>Players Stats</h3>
+        <!-- <div class="title">
+        </div> -->
       </header>
 
       <div class="leaderboard-body">
@@ -58,28 +55,23 @@ export default {
 
 <style>
 .stats {
-  background-color: aliceblue;
   width: 50%;
   height: 100vh;
 }
 
-.stats-back-btn {
-  top: 0;
-  background-color: transparent;
-  border: hidden;
-  position: absolute;
-}
-
 .centered {
-  position: fixed;
+  position: absolute;
 }
 
 .leaderboard {
   width: 46%;
   height: 96%;
   border-radius: 26px;
-  overflow: hidden;
+  /* overflow: hidden; */
   margin: 10px;
+  margin-top: 20px;
+  display: block;
+  overflow: auto;
 }
 
 .title {
@@ -91,30 +83,32 @@ export default {
   -webkit-tap-highlight-color: transparent;
 }
 
-.title h3 {
+.leaderboard-header h3 {
   color: #fcfcfc;
   text-transform: uppercase;
   font-family: sans-serif;
   text-align: center;
   flex: auto;
+  line-height: 3;
 }
 
 .leaderboard-header {
   top: 0;
-  height: 10%;
+  height: 50px;
   width: 100%;
   background-color: #772cdc;
   position: absolute;
-  padding: 0 28px;
+  /* padding: 0 28px; */
 }
 
 .leaderboard-body {
-  top: 10%;
+  top: 50px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
   width: 100%;
-  height: 90%;
   background-color: #ffffff;
-
   position: absolute;
+  padding-bottom: 10px;
 }
 
 .padding-font {
@@ -127,7 +121,8 @@ export default {
 
 .stats-data {
   display: flex;
-  background-color: #e4dbec99;
+  /* background-color: #e4dbec99; */
+  background: linear-gradient(45deg, #e898c763, #8aedc26e);
   margin: 8px 8px;
   justify-content: center;
   border-radius: 6px;
@@ -139,7 +134,7 @@ export default {
 }
 
 .player-li {
-  font-size: 16px;
+  font-size: 18px;
   width: 25%;
   text-align: center;
   line-height: 2;
