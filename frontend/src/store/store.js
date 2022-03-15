@@ -1,7 +1,5 @@
-// import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
-// Vue.use(Vuex);
 
 export const store = new Vuex.Store({
 
@@ -71,12 +69,20 @@ export const store = new Vuex.Store({
             return state.allRandomElements;
         },
 
+        numberArray: (state) => {
+            return state.numberArray;
+        },
+
         itemsPerRow: (state) => {
             return state.itemsPerRow;
         },
 
         moves: (state) => {
             return state.numberOfSwaps;
+        },
+
+        atCorrectPosition: (state) => {
+            return state.atCorrectPosition;
         },
 
         isPlaying: (state) => {
@@ -269,7 +275,7 @@ export const store = new Vuex.Store({
             let moves = localStorage.getItem("Moves");
             let position = localStorage.getItem("Position");
             // resume moves
-            state.numberOfSwaps = moves;
+            state.numberOfSwaps = moves != null ? moves : 0;
 
             // resume time
             let resumeTime = time.split(':');
@@ -294,7 +300,7 @@ export const store = new Vuex.Store({
                 state.seconds = state.timer % 60;
                 window.localStorage.setItem(
                     "Time",
-                    `${state.minutes}:${state.seconds}`
+                    `${("0" + state.minutes).slice(-2)}:${("0" + state.seconds).slice(-2)}`
                 );
             }
         },
@@ -311,6 +317,7 @@ export const store = new Vuex.Store({
         pause: (state) => {
             state.pauseGame = !state.pauseGame;
         },
+
     },
 
     actions: {
@@ -346,9 +353,11 @@ export const store = new Vuex.Store({
 
         checkIfUserWin: ({
             getters,
-            state
+            state,
+            commit
         }) => {
             if (getters.checkIfUserWin) {
+                commit('pause');
                 state.userWinFlag = true
                 let time = localStorage.getItem('Time');
                 let moves = localStorage.getItem("Moves");
@@ -358,7 +367,7 @@ export const store = new Vuex.Store({
                 }
 
                 axios
-                    .post('http://localhost:3000/player-stats', data)
+                    .post('https://4y9i0s4db7.execute-api.us-east-1.amazonaws.com/player-stats', data)
                     .then(response => {
                         return response.json()
 
@@ -385,5 +394,30 @@ export const store = new Vuex.Store({
             context.commit('resetMoves');
             context.commit('resetFlag');
         },
+
+        checkLocalStorage: (context) => {
+            context.commit('checkLocalStorage');
+        },
+
+        resumeFlag: (context) => {
+            context.commit('resumeFlag');
+        },
+
+        resumeGame: (context) => {
+            context.commit('resumeGame');
+            let position = localStorage.getItem("Position");
+            if (position == null) {
+                context.commit("arrangeNumbersRandomly");
+            }
+        },
+
+        playGame: (context) => {
+            context.commit('playGame');
+        },
+
+        resetUserWinFlag: (context) => {
+            context.commit('resetUserWinFlag');
+        },
+
     },
 })

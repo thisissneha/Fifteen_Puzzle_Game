@@ -1,5 +1,5 @@
 <template>
-  <h1>FIFTEEN PUZZLE GAME</h1>
+  <h1 class="heading">FIFTEEN PUZZLE GAME</h1>
 </template>
 
 <script>
@@ -9,15 +9,9 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Merienda&display=swap");
-* {
-  margin: 0px;
-  padding: 0px;
-  font-family: "Merienda", cursive;
-}
-h1 {
+.heading {
   color: #00bcd4;
-  margin: 4%;
-  margin-bottom: 2%;
+  padding: 6%;
+  padding-bottom: 4%;
 }
 </style>

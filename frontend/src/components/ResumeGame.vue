@@ -9,10 +9,10 @@
           alt="game-logo"
         />
       </div>
-      <button class="padding-font-game" @click="resumeGame(), resumeFlag()">
+      <button class="resume-button" @click="resumeGame(), resumeFlag()">
         Resume Game
       </button>
-      <button class="padding-font-game" @click="resetGame(), resumeFlag()">
+      <button class="resume-button" @click="resetGame(), resumeFlag()">
         New Game
       </button>
     </div>
@@ -31,7 +31,7 @@ export default {
 
   methods: {
     resumeGame: function () {
-      return this.$store.commit("resumeGame");
+      return this.$store.dispatch("resumeGame");
     },
 
     resetGame: function () {
@@ -39,7 +39,7 @@ export default {
     },
 
     resumeFlag: function () {
-      this.$store.commit("resumeFlag");
+      this.$store.dispatch("resumeFlag");
     },
   },
 };
@@ -66,7 +66,7 @@ export default {
 
 .resume-game {
   width: 40%;
-  height: 70%;
+  height: 60%;
   border-radius: 26px;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
   overflow: hidden;
@@ -79,7 +79,7 @@ export default {
   position: absolute;
 }
 
-.padding-font-game {
+.resume-button {
   padding: 10px 8px;
   font-size: 16px;
   font-weight: 600;
@@ -90,5 +90,6 @@ export default {
   border-radius: 6px;
   background-color: cornflowerblue;
   color: white;
+  cursor: pointer;
 }
 </style>
