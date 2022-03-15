@@ -39,7 +39,7 @@ export default {
   },
 
   created() {
-    fetch("http://localhost:3000/stats")
+    fetch("https://4y9i0s4db7.execute-api.us-east-1.amazonaws.com/stats")
       .then((response) => {
         return response.json();
       })

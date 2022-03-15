@@ -353,9 +353,11 @@ export const store = new Vuex.Store({
 
         checkIfUserWin: ({
             getters,
-            state
+            state,
+            commit
         }) => {
             if (getters.checkIfUserWin) {
+                commit('pause');
                 state.userWinFlag = true
                 let time = localStorage.getItem('Time');
                 let moves = localStorage.getItem("Moves");
@@ -365,7 +367,7 @@ export const store = new Vuex.Store({
                 }
 
                 axios
-                    .post('http://localhost:3000/player-stats', data)
+                    .post('https://4y9i0s4db7.execute-api.us-east-1.amazonaws.com/player-stats', data)
                     .then(response => {
                         return response.json()
 
