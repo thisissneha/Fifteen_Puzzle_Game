@@ -98,11 +98,14 @@
   .centered-game {
     left: 50% !important;
   }
+<<<<<<< HEAD
 
   .userWin {
     left: 50% !important;
     width: 60% !important;
     height: 46% !important;
   }
+=======
+>>>>>>> 9e466d525c1b3197eec246512d8f0930c2624bab
 }
 </style>
